@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+	layout:decorate="layout/layout">
+<head>
+<title>Role Add</title>
+</head>
+<body>
+	<div layout:fragment="pageHeader">
+		<section class="content-header">
+			<h1>Add New Role</h1>
+		</section>
+	</div>
+
+	<div layout:fragment="content">
+		<div class="box box-warning">
+			<div class="box-body">
+				<form role="form" action="#" th:action="@{/roles/add}"
+					th:object="${role}" method="post">
+					<p th:if="${#fields.hasErrors('global')}" th:errors="*{global}"
+						th:class="text-red">Incorrect Data</p>
+
+					<label>Role Name</label>
+					<div class="form-group"
+						th:classappend="${#fields.hasErrors('roleName')} ? 'has-error'">
+						<label th:if="${#fields.hasErrors('roleName')}"
+							th:errors="*{roleName}" class="validation-message"></label> <input
+							type="text" th:field="*{roleName}" placeholder="Enter Role Name"
+							class="form-control" />
+					</div>
+					<label>Role Description</label>
+					<div class="form-group"
+						th:classappend="${#fields.hasErrors('roleDescription')} ? 'has-error'">
+						<label th:if="${#fields.hasErrors('roleDescription')}"
+							th:errors="*{roleDescription}" class="validation-message"></label> <input
+							type="text" th:field="*{roleDescription}" placeholder="Enter Role Description"
+							class="form-control" />
+					</div>
+					<div class="box-footer">
+						<button type="submit" class="btn btn-primary">Save</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
